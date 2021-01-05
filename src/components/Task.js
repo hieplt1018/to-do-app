@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -7,46 +6,41 @@ import Checkbox from '../components/Buttons/Checkbox';
 import TaskForm from '../components/Forms/TaskForm';
 import Button from 'react-bootstrap/Button'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: '33.33%',
-    flexShrink: 0,
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
-  },
-}));
-
-export default function ControlledAccordions() {
-  const classes = useStyles();
+export default function ControlledAccordions({ title, todo, todos, setTodos }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const deleteHandler = () => {
+    setTodos(todos.filter((element) => element.id !== todo.id));
+  };
+
   return (
-    <div className="task_1">
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-        <AccordionSummary
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-        >
-          <Checkbox />
-          <div className="task__btn">
-            <Button variant="info" className="btn btn__detail_1 mr-3">Details</Button>
-            <Button variant="danger" className="btn btn__detail_2">Danger</Button>
-          </div>
-        </AccordionSummary>
-        <AccordionDetails>
-          <TaskForm />
-        </AccordionDetails>
-      </Accordion>
+    <div className="todo mb-3">
+      <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
+          <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+            <AccordionSummary
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Checkbox
+                title={title}
+                todo={todo}
+                setTodos={setTodos}
+                todos={todos}
+              />
+              <div className="task__btn">
+                <Button variant="info" className="btn btn_details mr-3">Details</Button>
+                <Button onClick={deleteHandler} variant="danger" className="btn btn_remove">Remove</Button>
+              </div>
+            </AccordionSummary>
+            <AccordionDetails>
+             {/*<TaskForm />*/}
+            </AccordionDetails>
+          </Accordion>
+      </li>
     </div>
   );
 }
