@@ -1,12 +1,13 @@
 import React from 'react';
+import './Task.css'
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Checkbox from '../components/Buttons/Checkbox';
-import TaskForm from '../components/Forms/TaskForm';
+import Checkbox from '../Buttons/Checkbox';
+import UpdateTaskForm from '../Forms/UpdateTaskForm';
 import Button from 'react-bootstrap/Button'
 
-export default function ControlledAccordions({ title, todo, todos, setTodos }) {
+export default function Task({ title, todo, todos, setTodos }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -26,7 +27,7 @@ export default function ControlledAccordions({ title, todo, todos, setTodos }) {
               id="panel1bh-header"
             >
               <Checkbox
-                title={title}
+                title={todo.title}
                 todo={todo}
                 setTodos={setTodos}
                 todos={todos}
@@ -37,7 +38,11 @@ export default function ControlledAccordions({ title, todo, todos, setTodos }) {
               </div>
             </AccordionSummary>
             <AccordionDetails>
-             {/*<TaskForm />*/}
+              <UpdateTaskForm
+                todo={todo}
+                todos={todos}
+                setTodos={setTodos}
+              />
             </AccordionDetails>
           </Accordion>
       </li>

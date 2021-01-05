@@ -1,4 +1,5 @@
 import React from 'react';
+import './BulkAction.css'
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 

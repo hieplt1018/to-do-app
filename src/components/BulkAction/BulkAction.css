@@ -1,0 +1,13 @@
+.bulk-action {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  right: 0.05rem;
+  background: lightgrey;
+}
+
+.bulk-btn {
+  position: absolute;
+  right: 1rem;
+  bottom: 1.5rem;
+}

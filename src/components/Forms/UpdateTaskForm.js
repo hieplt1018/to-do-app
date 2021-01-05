@@ -4,46 +4,41 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import DatePicker from 'react-date-picker'
-import useForm from './useForm'
 
-const TaskForm = ({todos, setTodos}) => {
-  const [dueDate, setDueDate] = useState(new Date());
-  const uniqueRandom = require('unique-random');
-  const random = uniqueRandom(1, 100);
+const UpdateTaskForm = ({todo, todos, setTodos}) => {
+  const [todoUpdate, setTodoUpdate] = useState(todo);
+  const [dueDate, setDueDate] = useState(todoUpdate.dueDate);
 
-  const { handleChange, values } = useForm();
-
-  const handleSubmit = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
-    setTodos([
-      ...todos,
-      { title: values.title,
-        description: values.description,
-        dueDate: dueDate,
-        piority: values.piority ? values.piority : "Normal",
-        completed: false,
-        id: random() }
-    ]);
-    setDueDate(new Date());
-    Object.keys(values).map((key, index) => values[key] = '')
-    values.piority = "Normal";
+    let updateTodos = todos;
+    updateTodos = updateTodos.map(element => (element.id === todoUpdate.id) ? todoUpdate : element);
+    setTodos(updateTodos);
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const {name, value} = e.target;
+    setTodoUpdate({
+      ...todoUpdate,
+      [name]: value
+    });
   }
 
   return (
-    <Form className="p-3" onSubmit={handleSubmit}>
+    <Form className="p-3" onSubmit={handleUpdate}>
       <Form.Control
         type="text"
         name="title"
-        value={values.title}
+        value={todoUpdate.title}
         onChange={handleChange}
         placeholder="Add new task..." />
       <Form.Group controlId="description" className="pt-3">
         <Form.Label>Description</Form.Label>
         <Form.Control
-          as="textarea"
           rows={3}
           name="description"
-          value={values.description}
+          value={todoUpdate.description}
           onChange={handleChange}
        />
       </Form.Group>
@@ -62,7 +57,7 @@ const TaskForm = ({todos, setTodos}) => {
             as="select"
             name="piority"
             onChange={handleChange}
-            value={values.piority}
+            value={todoUpdate.piority}
           >
             <option>Low</option>
             <option>Normal</option>
@@ -71,9 +66,9 @@ const TaskForm = ({todos, setTodos}) => {
         </Form.Group>
       </Form.Row>
 
-      <Button variant="success" type="submit" className="btn-block">{'Add'}</Button>
+      <Button variant="success" type="submit" className="btn-block">{'Update'}</Button>
     </Form>
   );
 }
 
-export default TaskForm
+export default UpdateTaskForm

@@ -1,5 +1,6 @@
 import React from 'react';
-import Task from '../components/Task'
+import Task from '../Task/Task.js'
+import './TodoList.css';
 
 const TodoList = ({todos, setTodos}) => {
   return (
@@ -10,7 +11,7 @@ const TodoList = ({todos, setTodos}) => {
           todos={todos}
           todo={todo}
           key={todo.id}
-          title={todo.title}/>
+         />
       ))}
     </ul>
   );

@@ -1,0 +1,9 @@
+.task__btn {
+  position: absolute;
+  right: 1rem;
+  top: 1.5rem;
+}
+
+.todo:last-child {
+  margin-bottom: 7rem !important;
+}

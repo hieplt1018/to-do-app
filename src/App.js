@@ -4,12 +4,11 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import TaskForm from './components/Forms/TaskForm'
-import SearchBar from './components/SearchBar'
-import BulkAction from './components/BulkAction'
-import TodoList from './components/TodoList'
+import SearchBar from './components/SearchBar/SearchBar.js'
+import BulkAction from './components/BulkAction/BulkAction.js'
+import TodoList from './components/TodoList/TodoList.js'
 
 function App() {
-  const [taskInput, setTaskInput] = useState("");
   const [todos, setTodos] = useState([]);
 
   return (
@@ -20,8 +19,6 @@ function App() {
           <TaskForm
             todos={todos}
             setTodos={setTodos}
-            taskInput={taskInput}
-            setTaskInput={setTaskInput}
           />
         </Col>
         <Col xs={8} className="border border-dark p-3 list-task">
