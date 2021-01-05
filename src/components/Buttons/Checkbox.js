@@ -3,16 +3,24 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-export default function CheckboxLabels() {
+export default function CheckboxLabels({ title, todo, todos, setTodos }) {
   const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-    checkedF: true,
-    checkedG: true,
+    checked: true,
   });
 
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
+  };
+
+  const completeHandler = () => {
+    setTodos(todos.map((item) => {
+      if(item.id === todo.id) {
+        return {
+          ...item, completed: !item.completed
+        }
+      }
+      return item;
+    }));
   };
 
   return (
@@ -22,11 +30,12 @@ export default function CheckboxLabels() {
           <Checkbox
             checked={state.checkedB}
             onChange={handleChange}
-            name="checkedB"
+            onClick={completeHandler}
+            name="done"
             color="primary"
           />
         }
-        label="Task's Name"
+        label={title}
       />
     </FormGroup>
   );

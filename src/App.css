@@ -1,3 +1,7 @@
+ul {
+  list-style-type: none;
+}
+
 #app {
   border: 1px solid #000;
 }
@@ -25,9 +29,6 @@
   border: 1px solid #000;
 }
 
-.task_1 {
-  margin-bottom: 7rem;
-}
 .MuiAccordionDetails-root {
   border-top: 1px solid #000;
 }
@@ -54,4 +55,11 @@
   display: block;
 }
 
+.todo-list {
+  padding-left: 0;
+}
+
+.todo:last-child {
+  margin-bottom: 7rem !important;
+}
 
