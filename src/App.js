@@ -10,6 +10,7 @@ import TodoList from './components/TodoList/TodoList.js'
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [filterText, setfilterText] = useState('');
 
   return (
     <Container className="p-3">
@@ -23,8 +24,15 @@ function App() {
         </Col>
         <Col xs={8} className="border border-dark p-3 list-task">
           <h3 className="text-center"> Todo List </h3>
-          <SearchBar />
-          <TodoList setTodos={setTodos} todos={todos} />
+          <SearchBar
+            filterText={filterText}
+            setfilterText={setfilterText}
+          />
+          <TodoList
+            setTodos={setTodos}
+            todos={todos}
+            filterText={filterText}
+          />
           <BulkAction />
         </Col>
       </Row>

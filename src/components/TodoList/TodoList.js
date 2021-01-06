@@ -2,10 +2,10 @@ import React from 'react';
 import Task from '../Task/Task.js'
 import './TodoList.css';
 
-const TodoList = ({todos, setTodos}) => {
+const TodoList = ({todos, setTodos, filterText}) => {
   return (
     <ul className="todo-list">
-      {todos.map((todo) => (
+      {todos.filter((todo) => todo.title.includes(filterText)).map((todo) => (
         <Task
           setTodos={setTodos}
           todos={todos}
