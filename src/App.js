@@ -33,7 +33,10 @@ function App() {
             todos={todos}
             filterText={filterText}
           />
-          <BulkAction />
+          <BulkAction
+            todos={todos}
+            setTodos={setTodos}
+          />
         </Col>
       </Row>
     </Container>
