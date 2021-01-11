@@ -33,7 +33,7 @@ const UpdateTaskForm = ({todo, todos, setTodos}) => {
         value={todoUpdate.title}
         onChange={handleChange}
         placeholder="Add new task..." />
-      <Form.Group controlId="description" className="pt-3">
+      <Form.Group controlId={"updateForm_description_" + todoUpdate.id} className="pt-3">
         <Form.Label>Description</Form.Label>
         <Form.Control
           rows={3}
@@ -43,7 +43,7 @@ const UpdateTaskForm = ({todo, todos, setTodos}) => {
        />
       </Form.Group>
       <Form.Row>
-        <Form.Group as={Col} controlId="formGridCity">
+        <Form.Group as={Col} controlId={"updateForm_dueDate_" + todoUpdate.id}>
           <Form.Label className="due-date">Due Date</Form.Label>
           <DatePicker
             onChange={setDueDate}
@@ -51,7 +51,7 @@ const UpdateTaskForm = ({todo, todos, setTodos}) => {
             name="dueDate"
           />
         </Form.Group>
-        <Form.Group as={Col} controlId="formGridState">
+        <Form.Group as={Col} controlId={"updateForm_piority_" + todoUpdate.id}>
           <Form.Label>Piority</Form.Label>
           <Form.Control
             as="select"

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const useForm = () => {
   const [values, setValues] = useState({
@@ -7,7 +7,6 @@ const useForm = () => {
     dueDate: '',
     piority: ''
   });
-  const [errors, setErrors] = useState({});
 
   const handleChange = e => {
     const { name, value } = e.target
