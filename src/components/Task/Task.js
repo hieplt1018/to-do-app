@@ -7,7 +7,7 @@ import Checkbox from '../Buttons/Checkbox';
 import UpdateTaskForm from '../Forms/UpdateTaskForm';
 import Button from 'react-bootstrap/Button'
 
-export default function Task({ title, todo, todos, setTodos }) {
+export default function Task({ title, todo, todos, setTodos, setShowBulkAction }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -16,20 +16,6 @@ export default function Task({ title, todo, todos, setTodos }) {
 
   const deleteHandler = () => {
     setTodos(todos.filter((element) => element.id !== todo.id));
-  };
-
-  const completeHandler = () => {
-    setTodos(
-      todos.map((item) => {
-        if (item.id === todo.id) {
-          return {
-            ...item,
-            completed: !item.completed,
-          };
-        }
-        return item;
-      })
-    );
   };
 
   return (
@@ -45,7 +31,7 @@ export default function Task({ title, todo, todos, setTodos }) {
                 todo={todo}
                 setTodos={setTodos}
                 todos={todos}
-                onClick={completeHandler}
+                setShowBulkAction={setShowBulkAction}
               />
               <div className="task__btn">
                 <Button variant="info" className="btn btn_details mr-3">Details</Button>

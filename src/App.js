@@ -11,6 +11,7 @@ import TodoList from './components/TodoList/TodoList.js'
 function App() {
   const [todos, setTodos] = useState([]);
   const [filterText, setfilterText] = useState('');
+  const [showBulkAction, setShowBulkAction] = useState(false);
 
   return (
     <Container className="p-3">
@@ -32,11 +33,9 @@ function App() {
             setTodos={setTodos}
             todos={todos}
             filterText={filterText}
+            setShowBulkAction={setShowBulkAction}
           />
-          <BulkAction
-            todos={todos}
-            setTodos={setTodos}
-          />
+          {showBulkAction ? <BulkAction todos={todos} setTodos={setTodos} /> : null}
         </Col>
       </Row>
     </Container>
