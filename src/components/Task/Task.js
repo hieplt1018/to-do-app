@@ -18,6 +18,20 @@ export default function Task({ title, todo, todos, setTodos }) {
     setTodos(todos.filter((element) => element.id !== todo.id));
   };
 
+  const completeHandler = () => {
+    setTodos(
+      todos.map((item) => {
+        if (item.id === todo.id) {
+          return {
+            ...item,
+            completed: !item.completed,
+          };
+        }
+        return item;
+      })
+    );
+  };
+
   return (
     <div className="todo mb-3">
       <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
@@ -31,6 +45,7 @@ export default function Task({ title, todo, todos, setTodos }) {
                 todo={todo}
                 setTodos={setTodos}
                 todos={todos}
+                onClick={completeHandler}
               />
               <div className="task__btn">
                 <Button variant="info" className="btn btn_details mr-3">Details</Button>
