@@ -62,7 +62,7 @@ const TaskForm = ({todos, setTodos}) => {
             as="select"
             name="piority"
             onChange={handleChange}
-            value={values.piority}
+            value={values.piority ? values.piority : "Normal"}
           >
             <option>Low</option>
             <option>Normal</option>
